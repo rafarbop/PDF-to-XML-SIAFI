@@ -1,7 +1,6 @@
 from ProcessPdf import ProcessPdf
 import streamlit as st
-import pandas as pd
-import tabula as tb
+
 
 # Ajust layout and visual of streamlit
 st.set_page_config(
@@ -32,10 +31,12 @@ fileUploaded = st.sidebar.file_uploader(
 if fileUploaded is not None:
     processPdf = ProcessPdf()
     df_data_students = processPdf.toDataframe(fileUploaded)
-    st.dataframe(df_data_students)
 
     if processPdf.isValidPdf:
         st.sidebar.info(
             f"A tabela com a lista de pagamentos encontrou \
 {processPdf.lenDataframe()} aluno(s)."
         )
+        processPdf.cleanDataframe()
+
+    st.dataframe(df_data_students)

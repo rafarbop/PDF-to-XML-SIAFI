@@ -1,3 +1,4 @@
+from CleanData import name_split,cleanAG,cleanConta,cleanCPF,cleanValor
 import pandas
 import tabula
 import streamlit as st
@@ -28,7 +29,6 @@ class ProcessPdf:
                 )[2:]
             st.success("O arquivo foi processado com sucesso!")
             if file is not None and len(self.table_raw_list) > 0:
-                self.isValidPdf = True
                 if len(self.table_raw_list) > 1:
                     self.table_dataframe = self.table_raw_list[0]
                     for k in range(1, len(self.table_raw_list)):
@@ -41,6 +41,7 @@ class ProcessPdf:
                     self.table_dataframe,
                     columns=self.colunms_to_use
                 )
+                self.isValidPdf = True
         except:
             st.error("Ocorreu um erro no processamento do arquivo.\n\
 Verifique se o arquivo é um pdf extraído do SISAE.")
@@ -49,3 +50,12 @@ Verifique se o arquivo é um pdf extraído do SISAE.")
     
     def lenDataframe(self):
         return len(self.table_dataframe.index)
+    
+    def cleanDataframe(self):
+        if self.isValidPdf:
+            self.table_dataframe['NOME'] = self.table_dataframe['NOME'].apply(name_split)
+            self.table_dataframe['C.P.F.'] = self.table_dataframe['C.P.F.'].apply(cleanCPF)
+            self.table_dataframe['AG. No'] = self.table_dataframe['AG. No'].apply(cleanAG)
+            self.table_dataframe['C/C'] = self.table_dataframe['C/C'].apply(cleanConta)
+            self.table_dataframe['VALOR'] = self.table_dataframe['VALOR'].apply(cleanValor)
+            self.table_dataframe['VALOR'] = pandas.to_numeric(self.table_dataframe['VALOR'])
