@@ -1,4 +1,14 @@
-from CleanData import name_split,cleanAG,cleanConta,cleanCPF,cleanValor
+from CleanData import (
+    name_split,
+    cleanAG,
+    cleanConta,
+    cleanCPF,
+    cleanValor,
+    cleanContaBB,
+    fillZerosBCO,
+    fillZerosAG,
+    removeAG_DV,
+)
 import pandas
 import tabula
 import streamlit as st
@@ -55,7 +65,11 @@ Verifique se o arquivo é um pdf extraído do SISAE.")
         if self.isValidPdf:
             self.table_dataframe['NOME'] = self.table_dataframe['NOME'].apply(name_split)
             self.table_dataframe['C.P.F.'] = self.table_dataframe['C.P.F.'].apply(cleanCPF)
+            self.table_dataframe['BCO No'] = self.table_dataframe['BCO No'].apply(fillZerosBCO)
             self.table_dataframe['AG. No'] = self.table_dataframe['AG. No'].apply(cleanAG)
+            self.table_dataframe['AG. No'] = self.table_dataframe['AG. No'].apply(fillZerosAG)
+            self.table_dataframe['AG. No'] = self.table_dataframe['AG. No'].apply(removeAG_DV)
             self.table_dataframe['C/C'] = self.table_dataframe['C/C'].apply(cleanConta)
+            self.table_dataframe['C/C'] = self.table_dataframe['C/C'].apply(cleanContaBB)
             self.table_dataframe['VALOR'] = self.table_dataframe['VALOR'].apply(cleanValor)
             self.table_dataframe['VALOR'] = pandas.to_numeric(self.table_dataframe['VALOR'])
