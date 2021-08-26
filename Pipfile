@@ -8,6 +8,7 @@ streamlit = "*"
 pandas = "*"
 tabula-py = "*"
 python-dotenv = "*"
+dict2xml = "*"
 
 [dev-packages]
 
