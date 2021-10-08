@@ -5,10 +5,10 @@ name = "pypi"
 
 [packages]
 streamlit = "0.87.0"
-pandas = "*"
-tabula-py = "*"
-python-dotenv = "*"
-dict2xml = "*"
+pandas = "1.3.3"
+tabula-py = "2.3.0"
+python-dotenv = "0.19.0"
+dict2xml = "1.7.0"
 
 [dev-packages]
 
