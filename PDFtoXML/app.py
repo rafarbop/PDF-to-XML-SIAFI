@@ -4,6 +4,14 @@ from ProcessPdf import ProcessPdf
 from ConverttoXML import convertXML,receberXML
 import streamlit as st
 
+
+st.set_page_config(
+    page_title="PDF to XML-SIAFI",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+
 dadosGeraisDH = {
     "codigoSituacaoDH": "",
     "sequecialGeracao": "",
@@ -72,11 +80,6 @@ def processDatatoXML(dadosDH: dict, dadosAuxilios: dict, dadosPagamentoAlunos: l
 
 
 # Ajust layout and visual of streamlit
-st.set_page_config(
-    page_title="PDF to XML-SIAFI",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Title and Description of Application
 st.markdown("# Converter PDF para Arquivo XML do SIAFI")
@@ -189,25 +192,35 @@ if fileUploaded is not None:
                 )
             submit_dadosGeraisAuxilios = st.form_submit_button("Confirmar Dados Gerais dos Auxilios")
 
-
-    if dadosGeraisDH['cpfResponsavel'] != "" and dadosGeraisAuxilios["mesCompetenciaAuxilio"] != "":
-        with st.spinner('Processando os dados e convertendo para XML...'):
-            arquivoXML = processDatatoXML(
-                dadosGeraisDH,
-                dadosGeraisAuxilios,
-                df_data_students.values.tolist()
-            )
-            with st.expander("Visualise os dados extraídos do PDF processado.", expanded=False):
-                st.code(arquivoXML)
-        
-        linkxml = f'<a href="data:file/xml,{quote(arquivoXML)}" download="lista_pagamentos.xml">Download XML</a>'
-
-        st.success('Os dados foram processados com sucesso e o arquivo XML pode ser baixado no botão abaixo')
-        st.markdown(linkxml,unsafe_allow_html=True)
-        
+    isDatasInputsOK = False
+    if dadosGeraisDH['cpfResponsavel'] == "":
+        st.warning('Informe o CPF do responsável')
+    elif dadosGeraisAuxilios['mesCompetenciaAuxilio'] == "":
+        st.warning('Informe o mẽs do competência dos auxílios')
+    elif dadosGeraisAuxilios['processoSEI'] == "":
+        st.warning('Informe o número do processo SEI')
+    elif dadosGeraisAuxilios['numeroEmpenho'] == "":
+        st.warning('Informe o Empenho a ser utilizado')
     else:
-        st.warning("Informe o CPF do responsável e Mẽs de competência para continuar")
+        isDatasInputsOK = True
+    
 
+    if st.button('Processar Dados e Gerar Arquivo XML'):
+        if isDatasInputsOK:
+            with st.spinner('Processando os dados e convertendo para XML...'):
+                arquivoXML = processDatatoXML(
+                    dadosGeraisDH,
+                    dadosGeraisAuxilios,
+                    df_data_students.values.tolist()
+                )
+                with st.expander("Visualise os dados extraídos do PDF processado.", expanded=False):
+                    st.code(arquivoXML)
+            
+            linkxml = f'<a href="data:file/xml,{quote(arquivoXML)}" download="lista_pagamentos.xml">Download XML</a>'
 
-
+            st.success('Os dados foram processados com sucesso e o arquivo XML pode ser baixado no botão abaixo')
+            st.markdown(linkxml,unsafe_allow_html=True)
+        else:
+            st.error('Necessário informar os dados completos para gerar o Arquivo XML!')
+            st.warning('Verifique se confirmou os dados apertando nos botões de confirmar!')
     

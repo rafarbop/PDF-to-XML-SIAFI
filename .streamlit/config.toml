@@ -1,0 +1,13 @@
+[theme]
+
+# Primary accent for interactive elements
+primaryColor = '#00420C'
+
+# Background color for the main content area
+backgroundColor = 'hsl(204, 20%, 95%)'
+
+# Background color for sidebar and most interactive widgets
+secondaryBackgroundColor = 'hsl(204, 20%, 80%)'
+
+# Color used for almost all text
+textColor = 'hsl(204, 20%, 10%)'
