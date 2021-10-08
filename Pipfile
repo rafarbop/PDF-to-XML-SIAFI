@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-streamlit = "*"
+streamlit = "0.87.0"
 pandas = "*"
 tabula-py = "*"
 python-dotenv = "*"
