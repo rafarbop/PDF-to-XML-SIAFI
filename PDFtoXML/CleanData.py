@@ -8,7 +8,7 @@ def name_split(name):
 
 
 def cleanCPF(cpf):
-    cpf = cpf.replace('.', '').replace('-', '')
+    cpf = str(cpf).replace('.', '').replace('-', '')
     return cpf
 
 
@@ -33,15 +33,15 @@ def removeAG_DV(ag):
 
 
 def cleanConta(conta):
-    conta = conta.replace('.', '').replace('-', '').replace(' ', '')
+    conta = str(conta).replace('.', '').replace('-', '').replace(' ', '')
     return conta
 
 
 def cleanContaBB(conta):
-    conta = conta.replace('X', '0')
+    conta = str(conta).replace('X', '0')
     return conta
 
 
 def cleanValor(valor):
-    valor = valor.replace('R$ ', '').replace(',', '.')
+    valor = str(valor).replace('R$ ', '').replace(',', '.')
     return valor
