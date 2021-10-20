@@ -51,6 +51,7 @@ class ProcessPdf:
                     self.table_dataframe,
                     columns=self.colunms_to_use
                 )
+                self.table_dataframe.index += 1
                 self.isValidPdf = True
         except:
             st.error("Ocorreu um erro no processamento do arquivo.\n\
