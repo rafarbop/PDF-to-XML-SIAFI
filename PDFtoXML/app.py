@@ -1,7 +1,7 @@
-from datetime import date
 from urllib.parse import quote
 from ProcessPdf import ProcessPdf
 from ConverttoXML import convertXML,receberXML
+from PIL import Image
 import streamlit as st
 
 
@@ -94,6 +94,14 @@ tesouronacional/pt-br/siafi/siafi-web/informacoes-tecnicas/arquivos-batch)
     '''
 )
 st.markdown("---")
+
+with st.sidebar:
+    col1_sidedar,col2_sidedar = st.columns([1,5])
+    with col1_sidedar:
+        st.image(Image.open("public/images/GitHub-Mark-64px.png"),width=48)
+    with col2_sidedar:
+        st.write('Código do Projeto disponível no GitHub: [Repósitório](https://github.com/rafarbop/PDF-to-XML-SIAFI)')
+    st.write('---')
 
 fileUploaded = st.sidebar.file_uploader(
     "Faça upload do arquivo PDF:",
