@@ -12,9 +12,10 @@ def cleanCPF(cpf):
     return cpf
 
 
-def fillZerosBCO(ag):
-    ag = str(ag).zfill(3)
-    return ag
+def fillZerosBCO(banco):
+    banco = str(banco).split('.')[0]
+    banco = str(banco).zfill(3)
+    return banco
 
 
 def cleanAG(ag):

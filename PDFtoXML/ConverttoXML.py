@@ -156,9 +156,4 @@ def receberXML(lista_de_detalhes,dados_header):
 tesouro.fazenda.gov.br/" xmlns:sb="http://www.tesouro.gov.br/siafi/submissao">'
         )
 
-    # f = open("xml.xml", "w")
-    # try:
-    #     f.writelines(dados_xml_namespace)
-    # finally:
-    #     f.close()
     return dados_xml_namespace
