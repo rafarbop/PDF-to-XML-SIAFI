@@ -12,6 +12,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+DadostxtObserPreDoc = ''
 
 dadosGeraisDH = {
     "codigoSituacaoDH": "",
@@ -33,8 +34,8 @@ dadosGeraisAuxilios = {
 }
 
 
-
-def processDatatoXML(dadosDH: dict, dadosAuxilios: dict, dadosPagamentoAlunos: list):
+def processDatatoXML(dadosDH: dict, dadosAuxilios: dict,DadostxtObserPreDoc: str ,dadosPagamentoAlunos: list):
+    """Recebe os dados incluidos pelo usuário, os dados extraídos do PDF e envia para função que converte para XML."""
     lista_de_detalhes = []
 
     for dados_aluno in dadosPagamentoAlunos:
@@ -67,6 +68,7 @@ def processDatatoXML(dadosDH: dict, dadosAuxilios: dict, dadosPagamentoAlunos: l
             codUgBenef=dadosDH["ugResponsavel"],
             numSeqPai='1',
             codTipoOB='OBC',
+            txtObserPreDoc=f'{DadostxtObserPreDoc} - Mês {dadosAuxilios["mesCompetenciaAuxilio"]}/{dadosAuxilios["anoCompetenciaAuxilio"]} - {dadosAuxilios["processoSEI"]} - {dados_aluno[0][:20]}',
             banco=dados_aluno[2],
             agencia=dados_aluno[3],
             conta=dados_aluno[4],
@@ -184,9 +186,11 @@ if fileUploaded is not None:
             col1,col2 = st.columns(2)
             col3,col4 = st.columns(2)
             col5,col6 = st.columns(2)
+            col7 = st.columns(1)
             with col1:
                 dadosGeraisAuxilios['tipoAuxilio'] = st.text_input(
-                    "Informe o tipo de auxílio estudantil a ser pago aos alunos",
+                    "Campo 'Observações' do DH.",
+                    help="Mês/Ano, Processo e Nome do Aluno serão incluídos automaticamente ao final desse texto.",
                     value="Auxílio Emergêncial"
                 )
             with col2:
@@ -212,6 +216,7 @@ if fileUploaded is not None:
                 )
             submit_dadosGeraisAuxilios = st.form_submit_button("Confirmar Dados Gerais dos Auxilios")
 
+
     isDatasInputsOK = False
     if dadosGeraisDH['cpfResponsavel'] == "":
         st.warning('Informe o CPF do responsável')
@@ -224,6 +229,13 @@ if fileUploaded is not None:
     else:
         isDatasInputsOK = True
     
+    if st.checkbox('Incluir texto específico para o campo "Obsevarções" do Pre-doc OB',value=False):
+        DadostxtObserPreDoc = st.text_input(
+            label="Informe o texto de 'Observações' do Pre-doc OB",
+            help="Caso deseje que esse campo seja igual ao campo 'Observações' da aba Dados Gerais, DESMARQUE o checkbox acima e continue"
+        )
+    else:
+        DadostxtObserPreDoc = dadosGeraisAuxilios['tipoAuxilio']
 
     if st.button('Processar Dados e Gerar Arquivo XML'):
         if isDatasInputsOK:
@@ -231,6 +243,7 @@ if fileUploaded is not None:
                 arquivoXML = processDatatoXML(
                     dadosGeraisDH,
                     dadosGeraisAuxilios,
+                    DadostxtObserPreDoc,
                     df_data_students.values.tolist()
                 )
                 with st.expander("Visualise os dados extraídos do PDF processado.", expanded=False):
