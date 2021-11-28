@@ -35,6 +35,15 @@ def removeAG_DV(ag):
 
 def cleanConta(conta):
     conta = str(conta).replace('.', '').replace('-', '').replace(' ', '')
+    conta = conta.lstrip('0')
+    return conta
+
+def zfillConta(conta):
+    conta = conta.zfill(8)
+    return conta
+
+def lstripConta(conta):
+    conta = conta.lstrip('0')
     return conta
 
 

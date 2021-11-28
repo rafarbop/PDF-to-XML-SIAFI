@@ -1,4 +1,5 @@
 from urllib.parse import quote
+from CleanData import zfillConta,lstripConta
 from ProcessPdf import ProcessPdf
 from ConverttoXML import convertXML,receberXML
 from PIL import Image
@@ -119,10 +120,16 @@ if fileUploaded is not None:
         )
         processPdf.cleanDataframe()
 
-    if st.checkbox('Alterar as Agências de Bancos Digitais (Nubank - Código 260), PicPay - Código 380 e C6 Bank - Código 336) para 9999'):
+    if st.checkbox('Alterar as Agências de Bancos Digitais para 9999 (Nubank - Código 260, PicPay - Código 380 e C6 Bank - Código 336)'):
         df_data_students['AG. No'].loc[df_data_students['BCO No'] == '260'] = '9999'
         df_data_students['AG. No'].loc[df_data_students['BCO No'] == '380'] = '9999'
         df_data_students['AG. No'].loc[df_data_students['BCO No'] == '336'] = '9999'
+
+    if st.checkbox('Alterar Contas Poupança da CAIXA(Operação 013) - Incluir 13 no começo da conta'):
+        df_data_students['C/C'] = df_data_students['C/C'].apply(zfillConta)
+        df_data_students.loc[(df_data_students['OP. No'] == '013') & (df_data_students['BCO No'] == '104'),'C/C'] = '13'+df_data_students['C/C']
+        df_data_students['C/C'] = df_data_students['C/C'].apply(lstripConta)
+
 
     with st.expander("Visualise os dados extraídos do PDF processado.", expanded=True):
         st.dataframe(df_data_students)

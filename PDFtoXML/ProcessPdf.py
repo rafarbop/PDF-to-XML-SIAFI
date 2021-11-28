@@ -25,6 +25,7 @@ class ProcessPdf:
             "C.P.F.",
             "BCO No",
             "AG. No",
+            "OP. No",
             "C/C",
             "VALOR"
         ]
