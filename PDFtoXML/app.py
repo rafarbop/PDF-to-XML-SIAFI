@@ -119,7 +119,12 @@ if fileUploaded is not None:
         )
         processPdf.cleanDataframe()
 
-    with st.expander("Visualise os dados extraídos do PDF processado.", expanded=False):
+    if st.checkbox('Alterar as Agências de Bancos Digitais (Nubank - Código 260), PicPay - Código 380 e C6 Bank - Código 336) para 9999'):
+        df_data_students['AG. No'].loc[df_data_students['BCO No'] == '260'] = '9999'
+        df_data_students['AG. No'].loc[df_data_students['BCO No'] == '380'] = '9999'
+        df_data_students['AG. No'].loc[df_data_students['BCO No'] == '336'] = '9999'
+
+    with st.expander("Visualise os dados extraídos do PDF processado.", expanded=True):
         st.dataframe(df_data_students)
     
     with st.expander('Dados Gerais do Documento Hábil',expanded=True):
