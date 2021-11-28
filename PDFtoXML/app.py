@@ -71,7 +71,7 @@ def processDatatoXML(dadosDH: dict, dadosAuxilios: dict,DadostxtObserPreDoc: str
             txtObserPreDoc=f'{DadostxtObserPreDoc} - Mês {dadosAuxilios["mesCompetenciaAuxilio"]}/{dadosAuxilios["anoCompetenciaAuxilio"]} - {dadosAuxilios["processoSEI"]} - {dados_aluno[0][:20]}',
             banco=dados_aluno[2],
             agencia=dados_aluno[3],
-            conta=dados_aluno[4],
+            conta=dados_aluno[5],
             contaGoverno='UNICA',
         )
         lista_de_detalhes.append(detalhe_xml_aluno.incluirItem())
