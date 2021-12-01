@@ -46,7 +46,7 @@ def processDatatoXML(dadosDH: dict, dadosAuxilios: dict,DadostxtObserPreDoc: str
             dtEmis=dadosDH["dataGeracao"],
             dtVenc=dadosAuxilios['dataPagamentoPrevista'],
             codUgPgto=dadosDH["ugResponsavel"],
-            vlr=dados_aluno[5],
+            vlr=dados_aluno[6],
             txtObser=f'{dadosAuxilios["tipoAuxilio"]} - Mês {dadosAuxilios["mesCompetenciaAuxilio"]}/{dadosAuxilios["anoCompetenciaAuxilio"]} - {dadosAuxilios["processoSEI"]} - {dados_aluno[0][:20]}',
             txtProcesso=dadosAuxilios["processoSEI"],
             dtAteste=dadosAuxilios['dataAteste'],
