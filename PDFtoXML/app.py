@@ -249,10 +249,9 @@ if fileUploaded is not None:
                 with st.expander("Visualise os dados extraídos do PDF processado.", expanded=False):
                     st.code(arquivoXML)
             
-            linkxml = f'<a href="data:file/xml,{quote(arquivoXML)}" download="lista_pagamentos.xml">Download XML</a>'
 
             st.success('Os dados foram processados com sucesso e o arquivo XML pode ser baixado no botão abaixo')
-            st.markdown(linkxml,unsafe_allow_html=True)
+            st.download_button("Download Arquivo XML",data=arquivoXML,file_name="lista_pagamentos.xml")
         else:
             st.error('Necessário informar os dados completos para gerar o Arquivo XML!')
             st.warning('Verifique se confirmou os dados apertando nos botões de confirmar!')
