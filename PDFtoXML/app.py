@@ -229,7 +229,7 @@ if fileUploaded is not None:
     else:
         isDatasInputsOK = True
     
-    if st.checkbox('Incluir texto específico para o campo "Obsevarções" do Pre-doc OB',value=False):
+    if st.checkbox('Incluir texto específico no campo "Obsevarções" do Pre-doc OB',value=False):
         DadostxtObserPreDoc = st.text_input(
             label="Informe o texto de 'Observações' do Pre-doc OB",
             help="Caso deseje que esse campo seja igual ao campo 'Observações' da aba Dados Gerais, DESMARQUE o checkbox acima e continue"
@@ -237,7 +237,7 @@ if fileUploaded is not None:
     else:
         DadostxtObserPreDoc = dadosGeraisAuxilios['tipoAuxilio']
     
-    if st.checkbox('Incluir número de documento específico no campo "numDocOrigem" do Dados Básicos do DH',value=False):
+    if st.checkbox('Incluir texto específico no campo "numDocOrigem" do Dados Básicos do DH',value=False):
         numDocOrigemEspecifico = st.text_input(
             label="Informe o 'numDocOrigem' - Campo de Documento de Origem em Dados Básicos do DH",
             help="Desmarque o checkbox acima e continue para utilizar o valor padrão (Mês/Ano)"
