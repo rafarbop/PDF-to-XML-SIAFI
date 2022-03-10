@@ -136,7 +136,7 @@ if fileUploaded is not None:
     with st.expander("Visualise os dados extraídos do PDF processado.", expanded=True):
         st.dataframe(df_data_students)
     
-    with st.expander('Dados Gerais do Documento Hábil',expanded=True):
+    with st.expander(st.markdown('## Dados Gerais do Documento Hábil'),expanded=True):
         with st.form("formDadosGeraisSIAFI"):
 
             col1,col2 = st.columns(2)
@@ -181,7 +181,7 @@ if fileUploaded is not None:
                 )
             submit_dadosGeraisDH = st.form_submit_button("Confirmar Dados Gerais DH")
     
-    with st.expander('Dados Gerais dos Auxílios',expanded=True):
+    with st.expander(st.markdown('## Dados Gerais dos Auxílios'),expanded=True):
         with st.form("formDadosMesAuxilioSISAE"):
             col1,col2 = st.columns(2)
             col3,col4 = st.columns(2)
