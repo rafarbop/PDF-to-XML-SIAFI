@@ -161,10 +161,10 @@ if fileUploaded is not None:
             with col4:
                 dadosGeraisDH['anoReferencia'] = st.number_input(
                     "Ano Corrente na data de Apropriação do Documento Hábil",
-                    value=2021,
+                    value=2022,
                     step=1,
-                    min_value=2021,
-                    max_value=2025
+                    min_value=2022,
+                    max_value=2030
                 )
             with col5:
                 dadosGeraisDH['ugResponsavel'] = st.text_input(
@@ -195,7 +195,8 @@ if fileUploaded is not None:
                 )
             with col2:
                 dadosGeraisAuxilios['mesCompetenciaAuxilio'] = st.text_input(
-                    "Informe o mês competência dos Auxilios com dois dígitos - Ex.: 06"
+                    "Informe o mês competência dos Auxilios com dois dígitos - Ex.: 06",
+                    max_chars=2
                 )
             dadosGeraisAuxilios['anoCompetenciaAuxilio'] = dadosGeraisDH['anoReferencia']
             with col3:
@@ -208,11 +209,14 @@ if fileUploaded is not None:
                 )
             with col5:
                 dadosGeraisAuxilios["processoSEI"] = st.text_input(
-                    "Informe o número processo no SEI"
+                    "Informe o número processo no SEI",
+                    placeholder='23255.000123/2022-00'
                 )
             with col6:
                 dadosGeraisAuxilios["numeroEmpenho"] = st.text_input(
-                    "Informe o Empenho a ser utilizado na liquidação e pagamentos"
+                    "Informe o Empenho a ser utilizado na liquidação e pagamentos",
+                    max_chars=12,
+                    placeholder='2022NE000001'
                 )
             submit_dadosGeraisAuxilios = st.form_submit_button("Confirmar Dados Gerais dos Auxilios")
 
@@ -240,7 +244,8 @@ if fileUploaded is not None:
     if st.checkbox('Incluir texto específico no campo "numDocOrigem" do Dados Básicos do DH',value=False):
         numDocOrigemEspecifico = st.text_input(
             label="Informe o 'numDocOrigem' - Campo de Documento de Origem em Dados Básicos do DH",
-            help="Desmarque o checkbox acima e continue para utilizar o valor padrão (Mês/Ano)"
+            help="Desmarque o checkbox acima e continue para utilizar o valor padrão (Mês/Ano)",
+            max_chars=17
         )
     else:
         numDocOrigemEspecifico=f'{dadosGeraisAuxilios["mesCompetenciaAuxilio"]}/{dadosGeraisAuxilios["anoCompetenciaAuxilio"]}'[:18]
