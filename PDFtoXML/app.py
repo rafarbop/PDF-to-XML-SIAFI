@@ -34,7 +34,7 @@ dadosGeraisAuxilios = {
 }
 
 
-def processDatatoXML(dadosDH: dict, dadosAuxilios: dict,DadostxtObserPreDoc: str ,dadosPagamentoAlunos: list):
+def processDatatoXML(dadosDH: dict, dadosAuxilios: dict,DadostxtObserPreDoc: str,numDocOrigemEspecifico: str ,dadosPagamentoAlunos: list):
     """Recebe os dados incluidos pelo usuário, os dados extraídos do PDF e envia para função que converte para XML."""
     lista_de_detalhes = []
 
@@ -189,7 +189,7 @@ if fileUploaded is not None:
             col7 = st.columns(1)
             with col1:
                 dadosGeraisAuxilios['tipoAuxilio'] = st.text_input(
-                    "Campo 'Observações' do DH.",
+                    "Tipo de Auxílio a ser Pago",
                     help="Mês/Ano, Processo e Nome do Aluno serão incluídos automaticamente ao final desse texto.",
                     value="Auxílio Emergêncial"
                 )
@@ -236,6 +236,14 @@ if fileUploaded is not None:
         )
     else:
         DadostxtObserPreDoc = dadosGeraisAuxilios['tipoAuxilio']
+    
+    if st.checkbox('Incluir número de documento específico no campo "numDocOrigem" do Dados Básicos do DH',value=False):
+        numDocOrigemEspecifico = st.text_input(
+            label="Informe o 'numDocOrigem' - Campo de Documento de Origem em Dados Básicos do DH",
+            help="Desmarque o checkbox acima e continue para utilizar o valor padrão (Mês/Ano)"
+        )
+    else:
+        numDocOrigemEspecifico=f'{dadosGeraisAuxilios["mesCompetenciaAuxilio"]}/{dadosGeraisAuxilios["anoCompetenciaAuxilio"]}'[:18]
 
     if st.button('Processar Dados e Gerar Arquivo XML'):
         if isDatasInputsOK:
@@ -244,6 +252,7 @@ if fileUploaded is not None:
                     dadosGeraisDH,
                     dadosGeraisAuxilios,
                     DadostxtObserPreDoc,
+                    numDocOrigemEspecifico,
                     df_data_students.values.tolist()
                 )
                 with st.expander("Visualise os dados extraídos do PDF processado.", expanded=False):
