@@ -54,7 +54,7 @@ def processDatatoXML(dadosDH: dict, dadosAuxilios: dict,DadostxtObserPreDoc: str
             dtPgtoReceb=dadosAuxilios['dataPagamentoPrevista'],
             codIdentEmit=dadosDH["ugResponsavel"],
             dtEmisDocOrigem=dadosAuxilios['dataAteste'],
-            numDocOrigem=f'{dadosAuxilios["mesCompetenciaAuxilio"]}/{dadosAuxilios["anoCompetenciaAuxilio"]}'[:18],
+            numDocOrigem=numDocOrigemEspecifico[:17],
             numSeqItemPco='1',
             codSit=dadosDH["codigoSituacaoDH"],
             codUgEmpe=dadosDH["ugResponsavel"],
