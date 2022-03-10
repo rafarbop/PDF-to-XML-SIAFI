@@ -212,7 +212,7 @@ if fileUploaded is not None:
                 )
             with col6:
                 dadosGeraisAuxilios["numeroEmpenho"] = st.text_input(
-                    "Informe o número do Empenho que será utilizado na liquidação e pagamentos dos auxílios"
+                    "Informe o Empenho a ser utilizado na liquidação e pagamentos"
                 )
             submit_dadosGeraisAuxilios = st.form_submit_button("Confirmar Dados Gerais dos Auxilios")
 
