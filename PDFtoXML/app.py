@@ -189,8 +189,8 @@ if fileUploaded is not None:
             col7 = st.columns(1)
             with col1:
                 dadosGeraisAuxilios['tipoAuxilio'] = st.text_input(
-                    "Tipo de Auxílio a ser Pago",
-                    help="Mês/Ano, Processo e Nome do Aluno serão incluídos automaticamente ao final desse texto.",
+                    "Tipo de Auxílio a ser Pago - Informação será utilizada no Campo Observações",
+                    help="Mês/Ano, Processo e Nome do Aluno serão também incluídos automaticamente no Campo Observações.",
                     value="Auxílio Emergêncial"
                 )
             with col2:
