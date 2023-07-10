@@ -53,5 +53,5 @@ def cleanContaBB(conta):
 
 
 def cleanValor(valor):
-    valor = str(valor).replace('R$ ', '').replace(',', '.')
+    valor = str(valor).replace('R$ ', '').replace('.', '').replace(',', '.')
     return valor
