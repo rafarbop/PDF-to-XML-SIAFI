@@ -4,6 +4,7 @@ from ProcessPdf import ProcessPdf
 from ConverttoXML import convertXML,receberXML
 from PIL import Image
 import streamlit as st
+from datetime import date
 
 
 st.set_page_config(
@@ -169,7 +170,7 @@ if fileUploaded is not None:
             with col4:
                 dadosGeraisDH['anoReferencia'] = st.number_input(
                     "Ano Corrente na data de Apropriação do Documento Hábil",
-                    value=2022,
+                    value=date.today().year,
                     step=1,
                     min_value=2022,
                     max_value=2030
