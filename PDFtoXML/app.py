@@ -113,7 +113,7 @@ with st.sidebar:
     alterarObservacoesPredocOB = st.checkbox('Incluir "Obsevarções" do Pre-doc OB manualmente',value=False)
     alterarNumDocOrigemDadosBasicos = st.checkbox('Incluir "numDocOrigem" do Dados Básicos do DH manualmente',value=False)
 
-    processarPdf = st.button('Processar PDF com parametros selecionados')
+    # processarPdf = st.button('Processar PDF com parametros selecionados')
 
 fileUploaded = st.sidebar.file_uploader(
     "Faça upload do arquivo PDF:",
