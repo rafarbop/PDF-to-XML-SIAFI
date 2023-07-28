@@ -107,13 +107,20 @@ with st.sidebar:
     st.caption('Arquivo exemplo de Folha de Pagamentos - SISAE')
     st.caption('[Modelo_Folha_Pagamentos_Auxilios.pdf](https://github.com/rafarbop/PDF-to-XML-SIAFI/blob/11348cb5d772f4047ed143f22f77035d113e4e37/public/examples/Modelo_Folha_Pagamento_auxilios_SISAE.pdf)')
     st.write('---')
+    st.write('Parametros de processamento: ')
+    alterarAgenciasBancosDigitais = st.checkbox('Alterar as Agências de Bancos Digitais para 9999 (Nubank - Código 260, PicPay - Código 380 e C6 Bank - Código 336)'):
+    alterarPoupancasCaixa = st.checkbox('Alterar Contas Poupança da CAIXA(Operação 013) - Incluir 13 no começo da conta')
+    alterarObservacoesPredocOB = st.checkbox('Incluir texto específico no campo "numDocOrigem" do Dados Básicos do DH',value=False)
+    alterarNumDocOrigemDadosBasicos = st.checkbox('Incluir texto específico no campo "numDocOrigem" do Dados Básicos do DH',value=False)
+
+    processarPdf = st.button('Processar PDF com parametros selecionados'):
 
 fileUploaded = st.sidebar.file_uploader(
     "Faça upload do arquivo PDF:",
     type="pdf",
 )
 
-if fileUploaded is not None:
+if (fileUploaded is not None) and processarPdf:
     processPdf = ProcessPdf()
     df_data_students = processPdf.toDataframe(fileUploaded)
 
@@ -124,12 +131,12 @@ if fileUploaded is not None:
         )
         processPdf.cleanDataframe()
 
-    if st.checkbox('Alterar as Agências de Bancos Digitais para 9999 (Nubank - Código 260, PicPay - Código 380 e C6 Bank - Código 336)'):
+    if alterarAgenciasBancosDigitais:
         df_data_students['AG. No'].loc[df_data_students['BCO No'] == '260'] = '9999'
         df_data_students['AG. No'].loc[df_data_students['BCO No'] == '380'] = '9999'
         df_data_students['AG. No'].loc[df_data_students['BCO No'] == '336'] = '9999'
 
-    if st.checkbox('Alterar Contas Poupança da CAIXA(Operação 013) - Incluir 13 no começo da conta'):
+    if alterarPoupancasCaixa:
         df_data_students['C/C'] = df_data_students['C/C'].apply(zfillConta)
         df_data_students.loc[(df_data_students['OP. No'] == '013') & (df_data_students['BCO No'] == '104'),'C/C'] = '13'+df_data_students['C/C']
         df_data_students['C/C'] = df_data_students['C/C'].apply(lstripConta)
@@ -220,6 +227,22 @@ if fileUploaded is not None:
                     max_chars=12,
                     placeholder='2022NE000001'
                 )
+                if alterarObservacoesPredocOB:
+                    DadostxtObserPreDoc = st.text_input(
+                        label="Informe o texto de 'Observações' do Pre-doc OB",
+                        help="Caso deseje que esse campo seja igual ao campo 'Observações' da aba Dados Gerais, DESMARQUE o checkbox acima e continue"
+                    )
+                else:
+                    DadostxtObserPreDoc = dadosGeraisAuxilios['tipoAuxilio']
+                
+                if alterarNumDocOrigemDadosBasicos:
+                    numDocOrigemEspecifico = st.text_input(
+                        label="Informe o 'numDocOrigem' - Campo de Documento de Origem em Dados Básicos do DH",
+                        help="Desmarque o checkbox acima e continue para utilizar o valor padrão (Mês/Ano)",
+                        max_chars=17
+                    )
+                else:
+                    numDocOrigemEspecifico=f'{dadosGeraisAuxilios["mesCompetenciaAuxilio"]}/{dadosGeraisAuxilios["anoCompetenciaAuxilio"]}'[:18]
             submit_dadosGeraisAuxilios = st.form_submit_button("Confirmar Dados Gerais dos Auxilios")
 
 
@@ -234,23 +257,6 @@ if fileUploaded is not None:
         st.warning('Informe o Empenho a ser utilizado')
     else:
         isDatasInputsOK = True
-    
-    if st.checkbox('Incluir texto específico no campo "Obsevarções" do Pre-doc OB',value=False):
-        DadostxtObserPreDoc = st.text_input(
-            label="Informe o texto de 'Observações' do Pre-doc OB",
-            help="Caso deseje que esse campo seja igual ao campo 'Observações' da aba Dados Gerais, DESMARQUE o checkbox acima e continue"
-        )
-    else:
-        DadostxtObserPreDoc = dadosGeraisAuxilios['tipoAuxilio']
-    
-    if st.checkbox('Incluir texto específico no campo "numDocOrigem" do Dados Básicos do DH',value=False):
-        numDocOrigemEspecifico = st.text_input(
-            label="Informe o 'numDocOrigem' - Campo de Documento de Origem em Dados Básicos do DH",
-            help="Desmarque o checkbox acima e continue para utilizar o valor padrão (Mês/Ano)",
-            max_chars=17
-        )
-    else:
-        numDocOrigemEspecifico=f'{dadosGeraisAuxilios["mesCompetenciaAuxilio"]}/{dadosGeraisAuxilios["anoCompetenciaAuxilio"]}'[:18]
 
     if st.button('Processar Dados e Gerar Arquivo XML'):
         if isDatasInputsOK:
