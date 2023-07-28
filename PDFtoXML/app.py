@@ -194,7 +194,7 @@ if fileUploaded is not None:
             col1,col2 = st.columns(2)
             col3,col4 = st.columns(2)
             col5,col6 = st.columns(2)
-            col7 = st.columns(1)
+            col7,col8 = st.columns(2)
             with col1:
                 dadosGeraisAuxilios['tipoAuxilio'] = st.text_input(
                     "Tipo de Auxílio - Informação será utilizada em 'Observações'",
@@ -226,6 +226,7 @@ if fileUploaded is not None:
                     max_chars=12,
                     placeholder='2022NE000001'
                 )
+            with col7:
                 if alterarObservacoesPredocOB:
                     DadostxtObserPreDoc = st.text_input(
                         label="Informe o texto de 'Observações' do Pre-doc OB",
@@ -233,7 +234,7 @@ if fileUploaded is not None:
                     )
                 else:
                     DadostxtObserPreDoc = dadosGeraisAuxilios['tipoAuxilio']
-                
+            with col8:
                 if alterarNumDocOrigemDadosBasicos:
                     numDocOrigemEspecifico = st.text_input(
                         label="Informe o 'numDocOrigem' - Campo de Documento de Origem em Dados Básicos do DH",
