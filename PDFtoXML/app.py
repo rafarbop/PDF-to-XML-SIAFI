@@ -113,14 +113,13 @@ with st.sidebar:
     alterarObservacoesPredocOB = st.checkbox('Alterar "Observações" do Pre-doc OB',value=False)
     alterarNumDocOrigemDadosBasicos = st.checkbox('Incluir "numDocOrigem" do Dados Básicos do DH',value=False)
 
-    # processarPdf = st.button('Processar PDF com parametros selecionados')
 
 fileUploaded = st.sidebar.file_uploader(
     "Faça upload do arquivo PDF:",
     type="pdf",
 )
 
-if (fileUploaded is not None) and processarPdf:
+if fileUploaded is not None:
     processPdf = ProcessPdf()
     df_data_students = processPdf.toDataframe(fileUploaded)
 
@@ -131,15 +130,15 @@ if (fileUploaded is not None) and processarPdf:
         )
         processPdf.cleanDataframe()
 
-    if alterarAgenciasBancosDigitais:
-        df_data_students['AG. No'].loc[df_data_students['BCO No'] == '260'] = '9999'
-        df_data_students['AG. No'].loc[df_data_students['BCO No'] == '380'] = '9999'
-        df_data_students['AG. No'].loc[df_data_students['BCO No'] == '336'] = '9999'
+        if alterarAgenciasBancosDigitais:
+            df_data_students['AG. No'].loc[df_data_students['BCO No'] == '260'] = '9999'
+            df_data_students['AG. No'].loc[df_data_students['BCO No'] == '380'] = '9999'
+            df_data_students['AG. No'].loc[df_data_students['BCO No'] == '336'] = '9999'
 
-    if alterarPoupancasCaixa:
-        df_data_students['C/C'] = df_data_students['C/C'].apply(zfillConta)
-        df_data_students.loc[(df_data_students['OP. No'] == '013') & (df_data_students['BCO No'] == '104'),'C/C'] = '13'+df_data_students['C/C']
-        df_data_students['C/C'] = df_data_students['C/C'].apply(lstripConta)
+        if alterarPoupancasCaixa:
+            df_data_students['C/C'] = df_data_students['C/C'].apply(zfillConta)
+            df_data_students.loc[(df_data_students['OP. No'] == '013') & (df_data_students['BCO No'] == '104'),'C/C'] = '13'+df_data_students['C/C']
+            df_data_students['C/C'] = df_data_students['C/C'].apply(lstripConta)
 
 
     with st.expander("Visualise os dados extraídos do PDF processado.", expanded=True):
