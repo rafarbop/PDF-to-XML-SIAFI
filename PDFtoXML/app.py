@@ -108,7 +108,7 @@ with st.sidebar:
     st.caption('[Modelo_Folha_Pagamentos_Auxilios.pdf](https://github.com/rafarbop/PDF-to-XML-SIAFI/blob/11348cb5d772f4047ed143f22f77035d113e4e37/public/examples/Modelo_Folha_Pagamento_auxilios_SISAE.pdf)')
     st.write('---')
     st.write('Parametros de processamento: ')
-    alterarAgenciasBancosDigitais = st.checkbox('Alterar as Agências de Bancos Digitais para 9999 (Nubank - Código 260, PicPay - Código 380 e C6 Bank - Código 336)'):
+    alterarAgenciasBancosDigitais = st.checkbox('Alterar as Agências de Bancos Digitais para 9999 (Nubank - Código 260, PicPay - Código 380 e C6 Bank - Código 336)')
     alterarPoupancasCaixa = st.checkbox('Alterar Contas Poupança da CAIXA(Operação 013) - Incluir 13 no começo da conta')
     alterarObservacoesPredocOB = st.checkbox('Incluir texto específico no campo "numDocOrigem" do Dados Básicos do DH',value=False)
     alterarNumDocOrigemDadosBasicos = st.checkbox('Incluir texto específico no campo "numDocOrigem" do Dados Básicos do DH',value=False)
