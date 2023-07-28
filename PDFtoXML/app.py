@@ -110,8 +110,8 @@ with st.sidebar:
     st.write('Parametros de processamento: ')
     alterarAgenciasBancosDigitais = st.checkbox('Alterar as Agências de Bancos Digitais para 9999', help='(Nubank - Código 260, PicPay - Código 380 e C6 Bank - Código 336)')
     alterarPoupancasCaixa = st.checkbox('Alterar Poupança da CAIXA(Operação 013)', help='Incluir 13 no começo da conta')
-    alterarObservacoesPredocOB = st.checkbox('Alterar "Observações" do Pre-doc OB',value=False)
-    alterarNumDocOrigemDadosBasicos = st.checkbox('Incluir "numDocOrigem" do Dados Básicos do DH',value=False)
+    alterarObservacoesPredocOB = st.checkbox('Alterar "Observações" do Pre-doc OB', help='Caso não selecionado, será colocado texto padrão',value=False)
+    alterarNumDocOrigemDadosBasicos = st.checkbox('Alterar "numDocOrigem" do Dados Básicos do DH', help='Caso não selecionado, será colocado texto padrão',value=False)
 
 
 fileUploaded = st.sidebar.file_uploader(
