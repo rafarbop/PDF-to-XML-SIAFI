@@ -200,7 +200,7 @@ if fileUploaded is not None:
                 dadosGeraisAuxilios['tipoAuxilio'] = st.text_input(
                     "Tipo de Auxílio - Informação será utilizada em 'Observações'",
                     help="Mês/Ano, Processo e Nome do Aluno serão também incluídos automaticamente no Campo Observações.",
-                    value="Auxílio Emergêncial"
+                    value="Auxílio Estudantil"
                 )
             with col2:
                 dadosGeraisAuxilios['mesCompetenciaAuxilio'] = st.text_input(
@@ -225,13 +225,12 @@ if fileUploaded is not None:
                 dadosGeraisAuxilios["numeroEmpenho"] = st.text_input(
                     "Informe o Empenho a ser utilizado na liquidação e pagamentos",
                     max_chars=12,
-                    placeholder='2022NE000001'
+                    placeholder='2024NE000001'
                 )
             with col7:
                 if alterarObservacoesPredocOB:
                     DadostxtObserPreDoc = st.text_input(
-                        label="Informe o texto de 'Observações' do Pre-doc OB",
-                        help="Caso deseje que esse campo seja igual ao campo 'Observações' da aba Dados Gerais, DESMARQUE o checkbox acima e continue"
+                        label="Informe o texto de 'Observações' do Pre-doc OB"
                     )
                 else:
                     DadostxtObserPreDoc = dadosGeraisAuxilios['tipoAuxilio']
@@ -239,7 +238,6 @@ if fileUploaded is not None:
                 if alterarNumDocOrigemDadosBasicos:
                     numDocOrigemEspecifico = st.text_input(
                         label="Informe o 'numDocOrigem' - Campo de Documento de Origem em Dados Básicos do DH",
-                        help="Desmarque o checkbox acima e continue para utilizar o valor padrão (Mês/Ano)",
                         max_chars=17
                     )
                 else:
