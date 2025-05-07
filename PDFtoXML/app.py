@@ -109,6 +109,7 @@ with st.sidebar:
         st.write('Código do Projeto disponível no GitHub: [Repósitório](https://github.com/rafarbop/PDF-to-XML-SIAFI)')
     st.caption('Arquivo exemplo de Folha de Pagamentos - SISAE')
     st.caption('[Modelo_Folha_Pagamentos_Auxilios.pdf](https://github.com/rafarbop/PDF-to-XML-SIAFI/blob/11348cb5d772f4047ed143f22f77035d113e4e37/public/examples/Modelo_Folha_Pagamento_auxilios_SISAE.pdf)')
+    st.caption('Projeto Pessoal - Dúvidas ou Sugestões: rafarbop@gmail.com')
     st.write('---')
     st.write('Parametros de processamento: ')
     alterarAgenciasBancosDigitais = st.checkbox('Alterar as Agências de Bancos Digitais para 9999', help='(Nubank - Código 260, PicPay - Código 380 e C6 Bank - Código 336)')
@@ -153,7 +154,7 @@ if fileUploaded is not None:
             col1,col2 = st.columns(2)
             col3,col4 = st.columns(2)
             col5,col6,col7 = st.columns(3)
-            
+
             with col1:
                 dadosGeraisDH['codigoSituacaoDH'] = st.text_input(
                     "Código da Situação a ser usada na apropriação Documento Hábil",
