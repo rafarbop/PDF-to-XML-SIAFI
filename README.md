@@ -5,5 +5,5 @@ Esta aplicação processa um arquivo PDF extraído do Sistema de Auxílios Estud
 Mais informações sobre o [Processamento Bacth do Siafi](https://www.gov.br/tesouronacional/pt-br/siafi/siafi-web/informacoes-tecnicas/arquivos-batch).
 
 Link da Aplicação (Em Testes):
-[Aplicação PDF to XML do SIAFI](https://share.streamlit.io/rafarbop/pdf-to-xml-siafi/main/PDFtoXML/app.py)
+[Aplicação PDF to XML do SIAFI](https://pdfxmlsiafi.streamlit.app)
 
