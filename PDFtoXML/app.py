@@ -22,6 +22,7 @@ dadosGeraisDH = {
     "ugResponsavel": "",
     "cpfResponsavel": "",
     "dataGeracao": "",
+    "codigoSIORG": "",
 }
 
 dadosGeraisAuxilios = {
@@ -67,6 +68,7 @@ def processDatatoXML(dadosDH: dict, dadosAuxilios: dict,DadostxtObserPreDoc: str
             mesReferencia=dadosAuxilios["mesCompetenciaAuxilio"],
             anoReferencia=dadosAuxilios["anoCompetenciaAuxilio"],
             codUgBenef=dadosDH["ugResponsavel"],
+            codSIORG=dadosDH["codigoSIORG"],
             numSeqPai='1',
             codTipoOB='OBC',
             txtObserPreDoc=f'{DadostxtObserPreDoc} - Mês {dadosAuxilios["mesCompetenciaAuxilio"]}/{dadosAuxilios["anoCompetenciaAuxilio"]} - {dadosAuxilios["processoSEI"]} - {dados_aluno[0][:20]}',
@@ -151,6 +153,7 @@ if fileUploaded is not None:
             col1,col2 = st.columns(2)
             col3,col4 = st.columns(2)
             col5,col6 = st.columns(2)
+            col7 = st.columns(1)
             with col1:
                 dadosGeraisDH['codigoSituacaoDH'] = st.text_input(
                     "Código da Situação a ser usada na apropriação Documento Hábil",
@@ -178,10 +181,16 @@ if fileUploaded is not None:
             with col5:
                 dadosGeraisDH['ugResponsavel'] = st.text_input(
                     "UG do operador ao fazer o upload do arquivo no SIAFI",
-                    value="158953",
+                    value="909090",
                     max_chars=6
                 )
             with col6:
+                dadosGeraisDH['codigoSIORG'] = st.text_input(
+                    "Código SIORG - Centro de Custo",
+                    value="010101",
+                    max_chars=6
+                )
+            with col7:
                 dadosGeraisDH['cpfResponsavel'] = st.text_input(
                     "CPF do operador que fará o upload do arquivo no SIAFI",
                     max_chars=11,
@@ -248,6 +257,8 @@ if fileUploaded is not None:
     isDatasInputsOK = False
     if dadosGeraisDH['cpfResponsavel'] == "":
         st.warning('Informe o CPF do responsável')
+    elif dadosGeraisDH['codigoSIORG'] == "":
+        st.warning('Informe o Código SIORG')
     elif dadosGeraisAuxilios['mesCompetenciaAuxilio'] == "":
         st.warning('Informe o mẽs do competência dos auxílios')
     elif dadosGeraisAuxilios['processoSEI'] == "":

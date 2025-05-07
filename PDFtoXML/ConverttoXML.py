@@ -14,7 +14,7 @@ class convertXML:
                  numSeqItemPco, codSit, codUgEmpe, numEmpe, codSubItemEmpe,
                  numClassA,
                  numSeqItemCusto, codCentroCusto, mesReferencia, anoReferencia,
-                 codUgBenef, numSeqPai,
+                 codUgBenef, codSIORG, numSeqPai,
                  codTipoOB, txtObserPreDoc, banco, agencia, conta, contaGoverno
                  ):
         self.codUgEmit = codUgEmit
@@ -43,6 +43,7 @@ class convertXML:
         self.mesReferencia = mesReferencia
         self.anoReferencia = anoReferencia
         self.codUgBenef = codUgBenef
+        self.codSIORG = codSIORG
         self.numSeqPai = numSeqPai
         self.codTipoOB = codTipoOB
         self.txtObserPreDoc = txtObserPreDoc
@@ -94,6 +95,7 @@ class convertXML:
         dadosDH_centroCusto["codCentroCusto"] = self.codCentroCusto
         dadosDH_centroCusto["mesReferencia"] = self.mesReferencia
         dadosDH_centroCusto["anoReferencia"] = self.anoReferencia
+        dadosDH_centroCusto["codSIORG"] = self.codSIORG
         dadosDH_centroCusto["codUgBenef"] = self.codUgBenef
         dadosDH_centroCusto_relPcoItem = OrderedDict()
         dadosDH_centroCusto_relPcoItem["numSeqPai"] = self.numSeqPai
