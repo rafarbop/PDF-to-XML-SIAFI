@@ -152,8 +152,8 @@ if fileUploaded is not None:
 
             col1,col2 = st.columns(2)
             col3,col4 = st.columns(2)
-            col5,col6 = st.columns(2)
-            col7 = st.columns(1)
+            col5,col6,col7 = st.columns(3)
+            
             with col1:
                 dadosGeraisDH['codigoSituacaoDH'] = st.text_input(
                     "Código da Situação a ser usada na apropriação Documento Hábil",
