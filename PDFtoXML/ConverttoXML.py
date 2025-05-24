@@ -95,8 +95,8 @@ class convertXML:
         dadosDH_centroCusto["codCentroCusto"] = self.codCentroCusto
         dadosDH_centroCusto["mesReferencia"] = self.mesReferencia
         dadosDH_centroCusto["anoReferencia"] = self.anoReferencia
-        dadosDH_centroCusto["codSIORG"] = self.codSIORG
         dadosDH_centroCusto["codUgBenef"] = self.codUgBenef
+        dadosDH_centroCusto["codSIORG"] = self.codSIORG
         dadosDH_centroCusto_relPcoItem = OrderedDict()
         dadosDH_centroCusto_relPcoItem["numSeqPai"] = self.numSeqPai
         dadosDH_centroCusto_relPcoItem["numSeqItem"] = self.numSeqItemCusto
