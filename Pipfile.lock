@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b1e088f58fead9d035b72bd54f8faa10830b2853c168b3a77b217484d80b935d"
+            "sha256": "e39fa033d4d236334d258fcf7d7f9dde03f1a1b1b15267010d28f1e4c1aaa8a3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -687,12 +687,12 @@
         },
         "python-dotenv": {
             "hashes": [
-                "sha256:32b2bdc1873fd3a3c346da1c6db83d0053c3c62f28f1f38516070c4c8971b1d3",
-                "sha256:a5de49a31e953b45ff2d2fd434bbc2670e8db5273606c1e737cc6b93eff3655f"
+                "sha256:1d8214789a24de455a8b8bd8ae6fe3c6b69a5e3d64aa8a8e5d68e694bbcb285a",
+                "sha256:2c371a91fbd7ba082c2c1dc1f8bf89ca22564a087c2c287cd9b662adde799cf3"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.5'",
-            "version": "==0.19.2"
+            "markers": "python_version >= '3.10'",
+            "version": "==1.2.2"
         },
         "pytz": {
             "hashes": [
@@ -874,12 +874,12 @@
         },
         "tabula-py": {
             "hashes": [
-                "sha256:784c37a9a46bc8b928cf31cef1d7ed1c9db8af19fb6bb1e63a481ecda0d169d1",
-                "sha256:9da61aa5d4256f79e7fa64d1fb09956d4c104d1a0116566c43bf9f612f37c149"
+                "sha256:75968a83fe978e5d56ccf23f0f0255a459c256b7b52db7cabe5ac795bb3b12df",
+                "sha256:c7596c559fc813e313eb4fbc7aabe7e4290dbd04717c4cbe4aa4a2cafd00ab63"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.5'",
-            "version": "==2.3.0"
+            "markers": "python_version >= '3.9'",
+            "version": "==2.10.0"
         },
         "tenacity": {
             "hashes": [
